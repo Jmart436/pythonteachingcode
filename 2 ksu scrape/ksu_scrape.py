@@ -11,7 +11,7 @@ source = requests.get('https://news.kennesaw.edu/news-releases/?&categories=news
 
 soup = BeautifulSoup(source, 'lxml')
 
-ksu_news_csv = open("ksu_news "+"{:%B %d, %Y}".format(datetime.now())+".csv","w")
+ksu_news_csv = open("ksu_news_ "+year+"_"+"{:%B %d, %Y}".format(datetime.now())+".csv","w")
 csv_writer = csv.writer(ksu_news_csv)
 
 csv_writer.writerow(["Number","Title","Source","URL","Date"])
@@ -53,6 +53,12 @@ for blog_post in blog_posts:
     csv_writer.writerow([i,justtitle,source,URL,date])
 
     i += 1
-    print()
+    #print()
 
 ksu_news_csv.close()
+
+scrape_ksu_news("2017")
+scrape_ksu_news("2018")
+scrape_ksu_news("2019")
+scrape_ksu_news("2020")
+scrape_ksu_news("2021")
